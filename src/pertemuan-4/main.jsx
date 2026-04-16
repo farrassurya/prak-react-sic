@@ -9,7 +9,7 @@ createRoot(document.getElementById("root"))
     .render(
         <div>
             {/* <FrameworkList/> */}
-            {/* <FrameworkListSearchFilter/> */}
-            <ResponsiveText/>
+            <FrameworkListSearchFilter/>
+            {/* <ResponsiveText/> */}
         </div>
     )
