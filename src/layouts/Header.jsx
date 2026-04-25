@@ -3,26 +3,27 @@ import { FcAreaChart } from "react-icons/fc";
 import { SlSettings } from "react-icons/sl";
 
 
-export default function Header({ onSearchClick }) {
+export default function Header({
+  searchValue = "", // BARU
+  onSearchChange = () => {}, // BARU
+  searchReadOnly = true, // BARU
+  searchPlaceholder = "Search Here...", // BARU
+}) {
   return (
     <div id="header-container" className="flex justify-between items-center p-4">
-      {/* Search Bar */}
-      <button
-        id="search-bar"
-        type="button"
-        onClick={onSearchClick}
-        className="relative w-full max-w-lg cursor-text text-left"
-      >
+      {/* UPDATE: Search Bar existing diaktifkan untuk kebutuhan halaman tertentu */}
+      <div id="search-bar" className="relative w-full max-w-lg text-left">
         <input
           id="search-input"
           type="text"
-          placeholder="Search Here..."
-          readOnly
-          className="border border-gray-100 p-2 pr-10 bg-white w-full
-                        max-w-lg rounded-md outline-none cursor-pointer"
+          placeholder={searchPlaceholder}
+          value={searchValue}
+          readOnly={searchReadOnly}
+          onChange={(event) => onSearchChange(event.target.value)}
+          className="border border-gray-100 p-2 pr-10 bg-white w-full max-w-lg rounded-md outline-none transition focus:border-green-200 focus:ring-2 focus:ring-green-100"
         />
         <FaSearch id="search-icon" className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-300" />
-      </button>
+      </div>
 
 
       {/* Icon & Profile Section */}

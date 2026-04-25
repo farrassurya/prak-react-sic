@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FaShoppingCart, FaTruck, FaBan, FaDollarSign } from "react-icons/fa";
+import { FaShoppingCart, FaTruck, FaBan, FaDollarSign, FaPlus } from "react-icons/fa";
 import PageHeader from "../components/PageHeader";
 
 const recentOrders = [
@@ -86,7 +86,10 @@ export default function Dashboard() {
   return (
     <div id="dashboard-container">
       <PageHeader title="Dashboard" breadcrumb={["Dashboard"]}>
-        <button className="bg-hijau text-white px-4 py-2 rounded-lg">Add Order</button>
+        <button className="flex items-center gap-2 bg-[#557C56] text-white px-6 py-2.5 rounded-xl font-bold shadow-lg hover:bg-[#466847] transition-all active:scale-95">
+          <FaPlus className="text-[10px]" />
+          Add Order
+        </button>
       </PageHeader>
       <div id="dashboard-grid" className="p-5 grid sm:grid-cols-2 md:grid-cols-4 gap-4">
         <div id="dashboard-orders" className="flex items-center space-x-5 bg-white rounded-lg shadow-md p-4">

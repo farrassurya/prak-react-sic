@@ -1,24 +1,24 @@
-export default function PageHeader({ title = "Dashboard", breadcrumb = [], children = null }) {
-  const breadcrumbItems = Array.isArray(breadcrumb) ? breadcrumb : [breadcrumb];
+export default function PageHeader({ title = "Dashboard", breadcrumb = "Dashboard", children = null }) {
+  // MODIFIED: Keep breadcrumb handling very simple (string or array)
+  const breadcrumbText = Array.isArray(breadcrumb)
+    ? breadcrumb.join(" / ")
+    : breadcrumb;
 
   return (
-    <div id="pageheader-container" className="flex items-center justify-between p-4">
-      <div id="pageheader-left" className="flex flex-col">
-        <span id="page-title" className="text-3xl font-semibold">{title}</span>
-        <div id="breadcrumb-links" className="flex items-center font-medium space-x-2 mt-2">
-          {breadcrumbItems.length > 0 ? (
-            breadcrumbItems.map((item, index) => (
-              <span key={`${item}-${index}`} className="flex items-center space-x-2 text-gray-500">
-                <span>{item}</span>
-                {index < breadcrumbItems.length - 1 && <span className="text-gray-500">/</span>}
-              </span>
-            ))
-          ) : (
-            <span id="breadcrumb-home" className="text-gray-500">Dashboard</span>
-          )}
-        </div>
+    // UPDATED: Clean and responsive header layout
+    <div id="pageheader-container" className="flex flex-col gap-3 p-4 sm:flex-row sm:items-start sm:justify-between">
+      <div id="pageheader-left" className="min-w-0">
+        {/* MODIFIED: Title now comes from props */}
+        <h1 id="page-title" className="text-2xl font-semibold text-gray-900 sm:text-3xl">{title}</h1>
+
+        {/* NEW: Simple breadcrumb display */}
+        <p id="breadcrumb-links" className="mt-1 text-sm font-medium text-gray-500">
+          {breadcrumbText}
+        </p>
       </div>
-      {children ? <div id="action-button">{children}</div> : null}
+
+      {/* MODIFIED: Action buttons are passed via children */}
+      {children ? <div id="action-button" className="shrink-0">{children}</div> : null}
     </div>
   );
 }
