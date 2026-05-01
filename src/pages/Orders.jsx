@@ -124,7 +124,7 @@ export default function Orders() { // UPDATED: Hapus searchTerm parameter
   // Jaga agar hasil filter langsung terlihat saat keyword search berubah
   useEffect(() => {
     setCurrentPage(1);
-  }, [searchTerm]);
+  }, [searchQuery]);
 
   return (
     <div className="w-full pl-0 pr-6 pb-10 antialiased">
