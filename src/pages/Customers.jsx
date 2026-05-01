@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"; // MODIF
+import { useOutletContext } from "react-router-dom"; // NEW: Import useOutletContext
 import { FaUsers, FaPlus, FaSearch, FaEnvelope, FaPhone, FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import PageHeader from "../components/PageHeader";
 
@@ -37,7 +38,9 @@ const initialCustomers = [
 
 const CUSTOMERS_STORAGE_KEY = "customersData"; // BARU
 
-export default function Customers({ searchTerm = "" }) {
+export default function Customers() { // UPDATED: Hapus searchTerm parameter
+  // NEW: Ambil searchQuery dari Outlet context
+  const { searchQuery } = useOutletContext();
   const [customers, setCustomers] = useState(() => {
     // BARU: Ambil data customer tersimpan agar tidak hilang saat pindah halaman
     const savedCustomers = localStorage.getItem(CUSTOMERS_STORAGE_KEY);
@@ -50,7 +53,7 @@ export default function Customers({ searchTerm = "" }) {
   const itemsPerPage = 5; 
 
   const filteredCustomers = customers.filter((customer) => {
-    const keyword = (searchTerm || "").toLowerCase();
+    const keyword = (searchQuery || "").toLowerCase(); // UPDATED: searchTerm -> searchQuery
     return (
       customer.customerName.toLowerCase().includes(keyword) ||
       customer.email.toLowerCase().includes(keyword)

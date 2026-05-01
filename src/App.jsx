@@ -1,83 +1,50 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import React, { Suspense } from "react"; // NEW: Import React dan Suspense
 import "./assets/tailwind.css";
-import Sidebar from "./layouts/Sidebar";
-import Header from "./layouts/Header";
-import Dashboard from "./pages/Dashboard";
-import { Route, Routes, useLocation } from "react-router-dom";
-import Customers from "./pages/Customers";
-import Orders from "./pages/Orders";
-import NotFound from "./pages/NotFound";
-import ErrorPage from "./components/ErrorPage"; // NEW
+import { Route, Routes } from "react-router-dom";
+
+// UPDATED: Import MainLayout & AuthLayout
+import MainLayout from "./layouts/MainLayout"; // NEW
+import AuthLayout from "./layouts/AuthLayout"; // NEW
+import Loading from "./components/Loading"; // NEW: Import Loading component
+
+// NEW: Lazy load page components
+const Dashboard = React.lazy(() => import("./pages/Dashboard")); // NEW
+const Customers = React.lazy(() => import("./pages/Customers")); // NEW
+const Orders = React.lazy(() => import("./pages/Orders")); // NEW
+const NotFound = React.lazy(() => import("./pages/NotFound")); // NEW
+const ErrorPage = React.lazy(() => import("./components/ErrorPage")); // NEW
+
+// NEW: Lazy load auth pages
+const Login = React.lazy(() => import("./pages/auth/Login")); // NEW
+const Register = React.lazy(() => import("./pages/auth/Register")); // NEW
+const Forgot = React.lazy(() => import("./pages/auth/Forgot")); // NEW
 
 function App() {
-  // BARU: State untuk search dari Header (dipakai di halaman Customers)
-  const [searchQuery, setSearchQuery] = useState("");
-  const [count, setCount] = useState(0);
-  const location = useLocation(); // BARU
-  const isCustomersPage = location.pathname === "/customers"; // BARU
-  const isOrdersPage = location.pathname === "/orders";
-  const isSearchablePage = isCustomersPage || isOrdersPage;
-
   return (
-    <div id="app-container" className="bg-gray-100 min-h-screen flex">
-      <div id="layout-wrapper" className="flex flex-row flex-1">
-        <Sidebar />
-        <div id="main-content" className="flex-1 p-4">
-          <Header
-            searchValue={isSearchablePage ? searchQuery : ""}
-            onSearchChange={isSearchablePage ? setSearchQuery : () => {}}
-            searchReadOnly={!isSearchablePage}
-            searchPlaceholder={
-              isCustomersPage
-                ? "Search customer name or email"
-                : isOrdersPage
-                ? "Search order ID or customer name"
-                : "Search Here..."
-            }
-          />
-          <Routes>
-            <Route path="*" element={<NotFound />} />
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/orders" element={<Orders searchTerm={searchQuery} />} />
-            <Route path="/customers" element={<Customers searchTerm={searchQuery} />} /> {/* MODIF */}
+    /* NEW: Wrap Routes dengan Suspense dan Loading fallback */
+    <Suspense fallback={<Loading />}>
+      <Routes>
+        {/* NEW: Auth Routes dengan AuthLayout sebagai parent */}
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot" element={<Forgot />} />
+        </Route>
 
-            {/* NEW: Error routes using error cat images */}
-            <Route
-              path="/error/400"
-              element={
-                <ErrorPage // NEW
-                  errorCode={400}
-                  description="Bad Request. Please check your input."
-                  image="https://http.cat/400"
-                />
-              }
-            />
-            <Route
-              path="/error/401"
-              element={
-                <ErrorPage // NEW
-                  errorCode={401}
-                  description="Unauthorized. Please sign in first."
-                  image="https://http.cat/401"
-                />
-              }
-            />
-            <Route
-              path="/error/403"
-              element={
-                <ErrorPage // NEW
-                  errorCode={403}
-                  description="Forbidden. You do not have access."
-                  image="https://http.cat/403"
-                />
-              }
-            />
-          </Routes>
-        </div>
-      </div>
-    </div>
+        {/* Main Routes dengan MainLayout sebagai parent */}
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/customers" element={<Customers />} />
+          <Route path="/error/400" element={<ErrorPage errorCode={400} description="Bad Request. Please check your input." image="https://http.cat/400" />} />
+          <Route path="/error/401" element={<ErrorPage errorCode={401} description="Unauthorized. Please sign in first." image="https://http.cat/401" />} />
+          <Route path="/error/403" element={<ErrorPage errorCode={403} description="Forbidden. You do not have access." image="https://http.cat/403" />} />
+        </Route>
+
+        {/* Catch all - 404 */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
   );
 }
 
