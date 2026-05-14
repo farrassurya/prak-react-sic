@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"; // MODIF
-import { useOutletContext } from "react-router-dom"; // NEW: Import useOutletContext
+import { useOutletContext } from "react-router-dom";
 import { FaShoppingCart, FaPlus, FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa"; // MODIF
 import PageHeader from "../components/PageHeader";
 
@@ -39,9 +39,7 @@ const initialOrders = [
 
 const ORDERS_STORAGE_KEY = "ordersData"; // BARU
 
-export default function Orders() { // UPDATED: Hapus searchTerm parameter
-  // NEW: Ambil searchQuery dari Outlet context
-  const { searchQuery } = useOutletContext();
+export default function Orders() { // MODIF
   // BARU: State utama data orders
   const [orders, setOrders] = useState(() => {
     // BARU: Ambil data orders tersimpan agar tidak hilang saat pindah halaman
@@ -49,6 +47,7 @@ export default function Orders() { // UPDATED: Hapus searchTerm parameter
     return savedOrders ? JSON.parse(savedOrders) : initialOrders;
   });
   const [showAddForm, setShowAddForm] = useState(false); // BARU
+  const { searchQuery } = useOutletContext();
 
   // BARU: Logic pagination (mirip Customers)
   const [currentPage, setCurrentPage] = useState(1);
@@ -65,7 +64,7 @@ export default function Orders() { // UPDATED: Hapus searchTerm parameter
 
   // BARU: Search berdasarkan customerName dan orderId
   const filteredOrders = orders.filter((order) => {
-    const keyword = (searchQuery || "").toLowerCase(); // UPDATED: searchTerm -> searchQuery
+    const keyword = (searchQuery || "").toLowerCase();
     return (
       order.customerName.toLowerCase().includes(keyword) ||
       order.orderId.toLowerCase().includes(keyword)

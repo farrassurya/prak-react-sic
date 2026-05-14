@@ -9,7 +9,9 @@ export default function MainLayout() {
   const location = useLocation();
   const isCustomersPage = location.pathname === "/customers";
   const isOrdersPage = location.pathname === "/orders";
-  const isSearchablePage = isCustomersPage || isOrdersPage;
+  const isProductsPage =
+    location.pathname === "/products" || location.pathname.startsWith("/products/");
+  const isSearchablePage = isCustomersPage || isOrdersPage || isProductsPage;
 
   return (
     <div id="app-container" className="bg-gray-100 min-h-screen flex">
@@ -25,11 +27,13 @@ export default function MainLayout() {
                 ? "Search customer name or email"
                 : isOrdersPage
                 ? "Search order ID or customer name"
+                : isProductsPage
+                ? "Cari produk..."
                 : "Search Here..."
             }
           />
           {/* NEW: Outlet untuk menampilkan halaman-halaman yang menjadi child route */}
-          <Outlet context={{ searchQuery }} />
+          <Outlet context={{ searchQuery, setSearchQuery }} />
         </div>
       </div>
     </div>

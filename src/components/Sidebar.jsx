@@ -1,4 +1,4 @@
-import { FaPlus, FaHome, FaClipboardList, FaUsers, FaExclamationCircle } from "react-icons/fa"; // MODIFIED
+import { FaPlus, FaHome, FaClipboardList, FaBox, FaUsers, FaExclamationCircle } from "react-icons/fa"; // MODIFIED
 import { NavLink } from "react-router-dom"; // MODIFIED
 
 // NEW: Pindahkan dari /layouts
@@ -54,6 +54,12 @@ export default function Sidebar() {
               <span>Customers</span>
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/products" id="menu-4" className={menuClass}>
+              <FaBox className="text-xl" />
+              <span>Products</span>
+            </NavLink>
+          </li>
 
           {/* UPDATED: Visual separator between main menu and error menu */}
           <li className="pt-2">
@@ -65,19 +71,19 @@ export default function Sidebar() {
 
           {/* NEW: Error pages navigation */}
           <li>
-            <NavLink to="/error/400" id="menu-4" className={menuClass}>
+            <NavLink to="/error/400" id="menu-5" className={menuClass}>
               <FaExclamationCircle className="text-xl" />
               <span>Error 400</span>
             </NavLink>
           </li>
           <li>
-            <NavLink to="/error/401" id="menu-5" className={menuClass}>
+            <NavLink to="/error/401" id="menu-6" className={menuClass}>
               <FaExclamationCircle className="text-xl" />
               <span>Error 401</span>
             </NavLink>
           </li>
           <li>
-            <NavLink to="/error/403" id="menu-6" className={menuClass}>
+            <NavLink to="/error/403" id="menu-7" className={menuClass}>
               <FaExclamationCircle className="text-xl" />
               <span>Error 403</span>
             </NavLink>
