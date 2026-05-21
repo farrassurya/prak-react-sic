@@ -7,7 +7,9 @@ import Customers from "./pages/Customers";
 import Orders from "./pages/Orders";
 import Produk from "./pages/Produk";
 import NotFound from "./pages/NotFound";
+import Components from "./pages/Components";
 import ErrorPage from "./components/ErrorPage";
+import { Component } from "react";
 
 const ProductDetail = React.lazy(() => import("./pages/ProductDetail"));
 
@@ -19,6 +21,7 @@ function App() {
         <Route path="/orders" element={<Orders />} />
         <Route path="/customers" element={<Customers />} />
         <Route path="/products" element={<Produk />} />
+        <Route path="/components" element={<Components />} />
         <Route
           path="/products/:id"
           element={

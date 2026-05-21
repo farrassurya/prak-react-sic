@@ -60,6 +60,12 @@ export default function Sidebar() {
               <span>Products</span>
             </NavLink>
           </li>
+            <li>
+            <NavLink to="/components" id="menu-5" className={menuClass}>
+              <FaBox className="text-xl" />
+              <span>Components</span>
+            </NavLink>
+          </li>
 
           {/* UPDATED: Visual separator between main menu and error menu */}
           <li className="pt-2">
