@@ -66,6 +66,12 @@ export default function Sidebar() {
               <span>Components</span>
             </NavLink>
           </li>
+            <li>
+            <NavLink to="/fitur-xyz" id="menu-6" className={menuClass}>
+              <FaBox className="text-xl" />
+              <span>Fitur XYZ</span>
+            </NavLink>
+          </li>
 
           {/* UPDATED: Visual separator between main menu and error menu */}
           <li className="pt-2">

@@ -9,6 +9,7 @@ import Produk from "./pages/Produk";
 import NotFound from "./pages/NotFound";
 import Components from "./pages/Components";
 import ErrorPage from "./components/ErrorPage";
+import FiturXYZ from "./pages/auth/FiturXYZ";
 import { Component } from "react";
 
 const ProductDetail = React.lazy(() => import("./pages/ProductDetail"));
@@ -22,6 +23,7 @@ function App() {
         <Route path="/customers" element={<Customers />} />
         <Route path="/products" element={<Produk />} />
         <Route path="/components" element={<Components />} />
+        <Route path="/fitur-xyz" element={<FiturXYZ />} />
         <Route
           path="/products/:id"
           element={
