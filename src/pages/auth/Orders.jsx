@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"; // MODIF
 import { useOutletContext } from "react-router-dom";
 import { FaShoppingCart, FaPlus, FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa"; // MODIF
-import PageHeader from "../components/PageHeader";
+import PageHeader from "../../components/PageHeader";
 
 // BARU: Data JSON order awal (30 data)
 const initialOrders = [

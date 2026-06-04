@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaShoppingCart, FaTruck, FaBan, FaDollarSign, FaPlus } from "react-icons/fa";
-import PageHeader from "../components/PageHeader";
+import PageHeader from "../../components/PageHeader";
 
 const recentOrders = [
   {

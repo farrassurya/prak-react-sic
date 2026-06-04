@@ -2,17 +2,17 @@ import React from "react";
 import "./assets/tailwind.css";
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
-import Dashboard from "./pages/Dashboard";
-import Customers from "./pages/Customers";
-import Orders from "./pages/Orders";
-import Produk from "./pages/Produk";
-import NotFound from "./pages/NotFound";
-import Components from "./pages/Components";
+import Dashboard from "./pages/auth/Dashboard";
+import Customers from "./pages/auth/Customers";
+import Orders from "./pages/auth/Orders";
+import Produk from "./pages/auth/Produk";
+import NotFound from "./pages/auth/NotFound";
+import Components from "./pages/auth/Components";
 import ErrorPage from "./components/ErrorPage";
 import FiturXYZ from "./pages/auth/FiturXYZ";
 import { Component } from "react";
 
-const ProductDetail = React.lazy(() => import("./pages/ProductDetail"));
+const ProductDetail = React.lazy(() => import("./pages/auth/ProductDetail"));
 
 function App() {
   return (

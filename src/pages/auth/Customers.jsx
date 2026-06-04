@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"; // MODIF
 import { useOutletContext } from "react-router-dom"; // NEW: Import useOutletContext
 import { FaUsers, FaPlus, FaSearch, FaEnvelope, FaPhone, FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import PageHeader from "../components/PageHeader";
+import PageHeader from "../../components/PageHeader";
 
 const initialCustomers = [
   { customerId: "CUST-001", customerName: "Andi Pratama", email: "andi.pratama@mail.com", phone: "081200000001", loyalty: "Gold" },

@@ -1,4 +1,4 @@
-import ErrorPage from "../components/ErrorPage"; // NEW
+import ErrorPage from "../../components/ErrorPage"; // NEW
 
 export default function NotFound() {
   return (

@@ -6,15 +6,15 @@ import {
   FaDollarSign,
   FaPlus,
 } from "react-icons/fa";
-import PageHeader from "../components/PageHeader";
-import Button from "../components/Button";
-import Badge from "../components/Badge";
-import Avatar from "../components/Avatar";
-import Container from "../components/Container";
-import Footer from "../components/Footer";
-import Card from "../components/Card";
-import Table from "../components/Table";
-import ProductCard from "../components/ProductCard";
+import PageHeader from "../../components/PageHeader";
+import Button from "../../components/Button";
+import Badge from "../../components/Badge";
+import Avatar from "../../components/Avatar";
+import Container from "../../components/Container";
+import Footer from "../../components/Footer";
+import Card from "../../components/Card";
+import Table from "../../components/Table";
+import ProductCard from "../../components/ProductCard";
 
 export default function Components() {
   const headers = ["No", "Nama Produk", "Kategori", "Harga", "Aksi"];
