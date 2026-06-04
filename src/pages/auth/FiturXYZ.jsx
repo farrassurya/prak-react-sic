@@ -1,46 +1,58 @@
 import { Link } from "react-router-dom";
 import PageHeader from "../../components/PageHeader";
 import products from "../products.json";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { BiBadgeCheck } from "react-icons/bi";
+
 
 export default function FiturXYZ() {
   return (
     <div className="w-full pl-0 pr-6 pb-10 antialiased">
       <PageHeader title="Fitur XYZ" breadcrumb={["Management", "Fitur XYZ"]} />
+      Fitur XYZ adalah fitur baru yang sedang dalam tahap pengembangan. Fitur
+      ini akan memberikan kemampuan tambahan untuk mengelola produk dengan lebih
+      efisien. Berikut adalah contoh Button Shad UI :
+      <Button
+        className="mt-4"
+        onClick={() => alert("Fitur XYZ berhasil dijalankan!")}
+      >
+        Run XYZ
+      </Button>
+      <Button
+        variant="outline"
+        className="mt-4"
+        onClick={() => alert("Fitur XYZ berhasil dijalankan!")}
+      >
+        Run XYZ
+      </Button>
+      <Card>
+        <CardHeader>
+          <CardTitle>Card Title</CardTitle>
+          <CardDescription>Card Description</CardDescription>
+          <CardAction>Card Action</CardAction>
+        </CardHeader>
+        <CardContent>
+          <p>Card Content</p>
+        </CardContent>
+        <CardFooter>
+          <p>Card Footer</p>
+        </CardFooter>
+      </Card>
 
-      <div className="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left">
-            <thead>
-              <tr className="bg-emerald-600 text-white border-b border-emerald-700">
-                <th className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.15em]">#</th>
-                <th className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.15em]">Name</th>
-                <th className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.15em]">Code</th>
-                <th className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.15em]">Category</th>
-                <th className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.15em]">Brand</th>
-                <th className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.15em]">Price</th>
-                <th className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.15em]">Stock</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-50">
-              {products.map((item) => (
-                <tr key={item.id} className="hover:bg-slate-50/40 transition-colors">
-                  <td className="px-8 py-5 text-[13px] font-bold text-[#334155]">{item.id}</td>
-                  <td className="px-8 py-5 text-[13px] font-semibold text-slate-600">
-                    <Link to={`/products/${item.id}`} className="text-emerald-400 hover:text-emerald-500">
-                      {item.title}
-                    </Link>
-                  </td>
-                  <td className="px-8 py-5 text-[13px] font-medium text-slate-500">{item.code}</td>
-                  <td className="px-8 py-5 text-[13px] font-medium text-slate-500">{item.category}</td>
-                  <td className="px-8 py-5 text-[13px] font-medium text-slate-500">{item.brand}</td>
-                  <td className="px-8 py-5 text-[13px] font-bold text-slate-600">{item.price}</td>
-                  <td className="px-8 py-5 text-[13px] font-bold text-slate-600">{item.stock}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <Badge variant="secondary">
+        <BiBadgeCheck data-icon="inline-start" />
+        Verified
+      </Badge>
     </div>
   );
 }
